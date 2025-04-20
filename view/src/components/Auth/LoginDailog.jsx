@@ -4,6 +4,7 @@ import { images } from "../../Constants/Data";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../../Context/AccountProvider";
+import { addUser } from "../../services/api";
 
 const dailogStyle = {
   height: "96%",
@@ -44,11 +45,12 @@ alignItems:"center",
 const LoginDailog = () => {
   const { setAccount } = useAuth();
 
-  const onLoginSuccess = (res) => {
+  const onLoginSuccess = async (res) => {
     console.log(res);
     const userData = jwtDecode(res.credential);
     console.log(userData);
     setAccount(userData);
+    await addUser(userData);
   };
   const onLoginError = (res) => {
     console.log(res);
