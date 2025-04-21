@@ -40,7 +40,6 @@ const Header = () => {
           <HeaderMenu />
         </Icons>
       </Component>
-      <Search />
 
       <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} />
     </div>
