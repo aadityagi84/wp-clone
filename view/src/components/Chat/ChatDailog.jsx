@@ -2,6 +2,8 @@ import { Box, Dialog, styled } from "@mui/material";
 import React from "react";
 import Menu from "./Menu/Menu";
 import EmptyChat from "./ChatSection/EmptyChat";
+import ChatBox from "./ChatSection/ChatBox";
+import { useAuth } from "../../Context/AccountProvider";
 
 const ChatDailog = () => {
   const dailogStyle = {
@@ -20,7 +22,7 @@ const ChatDailog = () => {
   const Component = styled(Box)(({ theme }) => ({
     display: "flex",
     height: "100%",
-    gap: "20px",
+    // gap: "20px",
     margin: "0 auto",
     // paddingLeft: "15px",
     width: "100%",
@@ -43,6 +45,8 @@ const ChatDailog = () => {
     borderleft: 1px solid (0, 0, 0, 0.14);
   `;
 
+  const { person } = useAuth();
+
   return (
     <div>
       <Dialog
@@ -56,7 +60,9 @@ const ChatDailog = () => {
             <Menu />
           </LeftComponents>
           <RightComponents>
-            <EmptyChat />
+            {/* <EmptyChat /> */}
+
+            {Object.keys(person).length ? <ChatBox /> : <EmptyChat />}
           </RightComponents>
         </Component>
       </Dialog>
