@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUser } from "../../../services/api";
+import { getUser, startConversation } from "../../../services/api";
 import { Box, styled } from "@mui/material";
 import { useAuth } from "../../../Context/AccountProvider";
 
@@ -8,22 +8,29 @@ const Component = styled(Box)`
   overflow-y: scroll;
 `;
 
-const Users = () => {
+const Users = ({ text }) => {
   const [users, setUsers] = useState([]);
   const { account, setPerson, person } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await getUser();
-      if (response.length) {
-        setUsers(response);
+      try {
+        let response = await getUser();
+        const filterData = response.filter((user) =>
+          user.name.toLowerCase().includes(text.toLowerCase())
+        );
+        setUsers(filterData);
+      } catch (err) {
+        console.error("Failed to fetch users", err);
       }
     };
+
     fetchData();
-  }, []);
+  }, [text]);
 
   const getUsers = async (user) => {
     setPerson(user);
+    await startConversation({ senderId: account.sub, receiverId: user.sub });
   };
 
   return (

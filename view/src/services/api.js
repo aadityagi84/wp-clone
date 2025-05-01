@@ -19,3 +19,21 @@ export const getUser = async () => {
     console.log("Error while get user api work", error);
   }
 };
+
+export const startConversation = async (data) => {
+  try {
+    const response = await axios.post(apiData.startChat, data);
+    console.log(response, "start conversation data");
+  } catch (error) {
+    console.log("Error while start conversation api work", error);
+  }
+};
+
+export const getConversation = async (data) => {
+  try {
+    const response = await axios.post(apiData.getChat, data);
+    console.log(response, "start conversation data");
+  } catch (error) {
+    console.log("Error while start conversation api work", error);
+  }
+};

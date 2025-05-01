@@ -1,4 +1,5 @@
 import React from "react";
+import useAuth from "../../../Context/AccountProvider";
 import { Box, styled } from "@mui/material";
 
 import { images } from "../../../Constants/Data";
@@ -13,11 +14,23 @@ const Component = styled(Box)`
   overflow-y: scroll;
 `;
 
-const Messages = () => {
+const Messages = ({ person }) => {
+  const { account } = useAuth();
+  const sendText = (e) => {
+    console.log("sendText", e);
+    const code = e.keycode || e.which;
+    if (code === 13) {
+      let message = {
+        senderId: account.sub,
+        receiverId: person.sub,
+        conversationId: person.conversationId,
+      };
+    }
+  };
   return (
     <Wrapper>
       <Component></Component>
-      <ChatFooter />
+      <ChatFooter sendText={sendText} />
     </Wrapper>
   );
 };

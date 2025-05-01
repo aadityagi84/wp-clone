@@ -2,7 +2,7 @@ import { Box, InputBase, styled } from "@mui/material";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 
-const Search = () => {
+const Search = ({ setText, text }) => {
   const Component = styled(Box)`
     background: #fff;
     height: 50px;
@@ -38,7 +38,11 @@ const Search = () => {
           <IoSearch />
         </Icon>
         <Box>
-          <InputFiled placeholder="Serach or a new Chat" />
+          <InputFiled
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Search or start a new chat"
+          />
         </Box>
       </Wrapper>
     </Component>
