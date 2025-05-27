@@ -2,7 +2,8 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext(null);
 
-const AccountProvider = ({ children }) => {
+// const AccountProvider = ({ children }) => {
+const AccountProvider = ({ children } = {}) => {
   const [account, setAccount] = useState("");
   const [person, setPerson] = useState({});
   return (

@@ -31,6 +31,7 @@ const Header = () => {
       <Component>
         <img
           src={account.picture}
+          referrerPolicy="no-referrer"
           className="w-[50px] h-[50px] rounded-full cursor-pointer "
           alt="dp"
           onClick={() => toggleDrawer()}

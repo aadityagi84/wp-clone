@@ -6,4 +6,8 @@ export const apiData = {
   startChat: `${api_url}/api/startConversation`,
   getChat: `${api_url}/api/getConversation`,
 
-  ,};
+  // send message
+  newMessageSend: `${api_url}/api/newMessage`,
+  getMessages: `${api_url}/api/getMessages`,
+  uploadFiles: `${api_url}/api/uploadFile`,
+};

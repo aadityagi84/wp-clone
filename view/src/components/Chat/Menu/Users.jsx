@@ -36,6 +36,7 @@ const Users = ({ text }) => {
   return (
     <div>
       <Component>
+        {users.picture}
         {users.map(
           (user) =>
             user.sub !== account.sub && (
@@ -47,6 +48,7 @@ const Users = ({ text }) => {
                 <img
                   src={user.picture}
                   alt="user"
+                  referrerPolicy="no-referrer"
                   className="w-[50px] h-[50px] rounded-full"
                 />
                 <Box>

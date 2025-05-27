@@ -48,7 +48,7 @@ const LoginDailog = () => {
   const onLoginSuccess = async (res) => {
     console.log(res);
     const userData = jwtDecode(res.credential);
-    console.log(userData);
+    console.log("when login", userData);
     setAccount(userData);
     await addUser(userData);
   };

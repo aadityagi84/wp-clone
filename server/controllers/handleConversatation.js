@@ -30,5 +30,40 @@ const startMessage = async (req, res) => {
   }
 };
 
-const checkMessage = async (req, res) => {};
+const checkMessage = async (req, res) => {
+  try {
+    const senderId = req.body.senderId;
+    const receiverId = req.body.receiverId;
+
+    // if (!senderId || !receiverId) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Both senderId and receiverId are required.",
+    //   });
+    // }
+
+    console.log("Checking conversation between:", senderId, receiverId);
+
+    const chatMessage = await conversation.findOne({
+      members: { $all: [senderId, receiverId] },
+    });
+
+    if (!chatMessage) {
+      return res.status(200).json({
+        success: true,
+        message: "No conversation found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Conversation fetched successfully",
+      data: chatMessage,
+    });
+  } catch (error) {
+    console.error("Error fetching conversation:", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 module.exports = { startMessage, checkMessage };

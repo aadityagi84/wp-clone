@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // db connection
+require("events").EventEmitter.defaultMaxListeners = 20;
 db();
 
 // routes
